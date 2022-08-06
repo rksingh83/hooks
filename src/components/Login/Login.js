@@ -16,6 +16,16 @@ const Login = (props) => {
 			enteredPassword.length > 6 && enteredEmail.includes("@")
 		);
 	}, [enteredEmail, enteredPassword]);
+	/* if we return anything else function or undefined or nothing then
+	it will throw destroy is not a function
+	*/
+	useEffect(() => {
+		console.log("calling api without debouncing");
+		let timerId = setTimeout(() => {
+			console.log(".......calling api now.....");
+		}, 2000);
+		return ()=>clearTimeout(timerId);
+	}, [enteredEmail]);
 
 	const emailChangeHandler = (event) => {
 		setEnteredEmail(event.target.value);
