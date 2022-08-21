@@ -1,0 +1,11 @@
+  rules for hooks
+  1. only call React hooks in React  Functions
+    1. React Functional component  
+    2. Custom hooks
+
+2 . Only call hooks at top level (not any nested block )
+
+3. useEffect always add dependency  except exceptional (rect state function, global variables, web api)
+
+
+  

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
+import { Input } from "../UI/input/input";
 
 const Login = (props) => {
 	const [enteredEmail, setEnteredEmail] = useState("");
@@ -24,7 +25,7 @@ const Login = (props) => {
 		let timerId = setTimeout(() => {
 			console.log(".......calling api now.....");
 		}, 2000);
-		return ()=>clearTimeout(timerId);
+		return () => clearTimeout(timerId);
 	}, [enteredEmail]);
 
 	const emailChangeHandler = (event) => {
@@ -51,34 +52,25 @@ const Login = (props) => {
 	return (
 		<Card className={classes.login}>
 			<form onSubmit={submitHandler}>
-				<div
-					className={`${classes.control} ${
-						emailIsValid === false ? classes.invalid : ""
-					}`}
-				>
-					<label htmlFor="email">E-Mail</label>
-					<input
-						type="email"
-						id="email"
-						value={enteredEmail}
-						onChange={emailChangeHandler}
-						onBlur={validateEmailHandler}
-					/>
-				</div>
-				<div
-					className={`${classes.control} ${
-						passwordIsValid === false ? classes.invalid : ""
-					}`}
-				>
-					<label htmlFor="password">Password</label>
-					<input
-						type="password"
-						id="password"
-						value={enteredPassword}
-						onChange={passwordChangeHandler}
-						onBlur={validatePasswordHandler}
-					/>
-				</div>
+				<Input
+					isValid={emailIsValid}
+					type="email"
+					label="Email"
+					id="email"
+					value={enteredEmail}
+					onChange={emailChangeHandler}
+					onBlur={validateEmailHandler}
+				/>
+				<Input
+					isValid={passwordIsValid}
+					type="password"
+					label="Password"
+					id="password"
+					value={enteredPassword}
+					onChange={passwordChangeHandler}
+					onBlur={validatePasswordHandler}
+				/>
+
 				<div className={classes.actions}>
 					<Button
 						type="submit"
