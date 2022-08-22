@@ -8,4 +8,59 @@
 3. useEffect always add dependency  except exceptional (rect state function, global variables, web api)
 
 
+
+Behind the scene
+React 
+A JS library for building user interface 
+
+
+ For optimization 
+   re-rerendering same child component with same props 
+     can be avoid by using React.memo(component, areEqual) 
+       1 .React.memo do shallow comparison of props if props are nested object then it we need to pass Custom  
+       2. comparison function as a second arguments into React.memo() 
+       if React.memo passed component props are any function  then it will again rerender so we need to use 
+       useCallback()  use and pass that props function 
+
+
+
+
+******Components and State****** 
+
+
+scheduling 
+
+ setState(data)
+    schedule a state update  with data 'data' => scheduled state change
+
+
+     setState(prev=> updated state)
+       use this if sate is dependent on prev state
+
+
+       navigationFunction(){
+         setState1(data)
+        setState2(data)
+
+       }
+       react will batch all the setState and calls once
+
+
+    
+    useMemo( function,[dependency] )
+      memorize   the value of  function  
+       1. we use function is perform intensive
+
+ **** useCallback vs useMemo *****
+useCallback and useMemo both expect a function and an array of dependencies. The difference is that useCallback returns its function when the dependencies change while useMemo calls its function and returns the result.
+
+Since JavaScript has first-class functions, useCallback(fn, deps) is equ
+
+
+ 
+
+
+
+
+
   

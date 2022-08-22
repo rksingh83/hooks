@@ -1,27 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useCallback, useState } from "react";
+import Button from "./components/UI/Button/Button";
+import DemoOutput from "./components/UI/Demo/DemoOutput";
+import Displaying from "./components/UI/Demo/Displaying";
 
-import Login from "./components/Login/Login";
-import Home from "./components/Home/Home";
-import MainHeader from "./components/MainHeader/MainHeader";
-//import Context from "./components/context/Context";
-import { Context } from "./components/context/Context2";
-function App() {
-	const context = useContext(Context);
-	console.log(context);
-
+const App = () => {
+	console.log("component updated");
+	const [isShowParagraph, setShowParagraph] = useState(false);
+	const toggleDivHandler = useCallback(() => {
+		setShowParagraph((prevShowParagraph) => !prevShowParagraph);
+	}, []);
 	return (
-		<React.Fragment>
-			<MainHeader />
-			<main>
-				{!context.isLoggedIn && (
-					<Login onLogin={context.loginHandler} />
-				)}
-				{context.isLoggedIn && (
-					<Home onLogout={context.logoutHandler} />
-				)}
-			</main>
-		</React.Fragment>
+		<div>
+			<h1>Welcome</h1>
+			<DemoOutput show={false} />
+			<Displaying />
+			<Button onClick={toggleDivHandler}>Toggle Div</Button>
+		</div>
 	);
-}
+};
 
 export default App;
